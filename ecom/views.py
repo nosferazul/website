@@ -452,18 +452,18 @@ def my_order_view(request):
 
 
 
-# @login_required(login_url='customerlogin')
-# @user_passes_test(is_customer)
-# def my_order_view2(request):
+@login_required(login_url='customerlogin')
+@user_passes_test(is_customer)
+def my_order_view2(request):
 
-#     products=models.Product.objects.all()
-#     if 'product_ids' in request.COOKIES:
-#         product_ids = request.COOKIES['product_ids']
-#         counter=product_ids.split('|')
-#         product_count_in_cart=len(set(counter))
-#     else:
-#         product_count_in_cart=0
-#     return render(request,'ecom/my_order.html',{'products':products,'product_count_in_cart':product_count_in_cart})    
+    products=models.Product.objects.all()
+    if 'product_ids' in request.COOKIES:
+        product_ids = request.COOKIES['product_ids']
+        counter=product_ids.split('|')
+        product_count_in_cart=len(set(counter))
+    else:
+        product_count_in_cart=0
+    return render(request,'ecom/my_order.html',{'products':products,'product_count_in_cart':product_count_in_cart})    
 
 
 
