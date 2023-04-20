@@ -1,4 +1,3 @@
 # website
 test123
-<!-- always # source ./ecommerce/venv/scripts/activate -->
-sjkadhj ndsakj
+always # source ./ecommerce/venv/scripts/activate
