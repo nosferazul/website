@@ -45,7 +45,7 @@ def customer_signup_view(request):
             user.set_password(user.password)
             user.save()
             customer=customerForm.save(commit=False)
-            customer.user=user
+            customer.user = user
             customer.save()
             my_customer_group = Group.objects.get_or_create(name='CUSTOMER')
             my_customer_group[0].user_set.add(user)
