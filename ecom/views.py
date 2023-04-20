@@ -21,11 +21,10 @@ def home_view(request):
     
 
 
-#for showing login button for admin(by sumit)
-def adminclick_view(request):
-    if request.user.is_authenticated:
-        return HttpResponseRedirect('afterlogin')
-    return HttpResponseRedirect('adminlogin')
+# #for showing login button for admin
+#     if request.user.is_authenticated:
+#         return HttpResponseRedirect('afterlogin')
+#     return HttpResponseRedirect('adminlogin')
 
 
 def customer_signup_view(request):
