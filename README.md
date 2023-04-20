@@ -1,3 +1,3 @@
 # website
 test123
-always 
+always # source ./ecommerce/venv/scripts/activate
