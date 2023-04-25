@@ -21,7 +21,7 @@ def home_view(request):
     
 
 
-#for showing login button for admin(by sumit)
+#for showing login button for admin
 def adminclick_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
@@ -36,11 +36,16 @@ def customer_signup_view(request):
         userForm=forms.CustomerUserForm(request.POST)
         customerForm=forms.CustomerForm(request.POST,request.FILES)
         if userForm.is_valid() and customerForm.is_valid():
+            # userForm.save()
+            # username = userForm.cleaned_data.get('username')
+            # raw_password = userForm.cleaned_data.get('password')
+            # user = user_passes_test(username=username, password=raw_password)
+            # login_required(request, user)
             user=userForm.save()
             user.set_password(user.password)
             user.save()
             customer=customerForm.save(commit=False)
-            customer.user=user
+            customer.user = user
             customer.save()
             my_customer_group = Group.objects.get_or_create(name='CUSTOMER')
             my_customer_group[0].user_set.add(user)
