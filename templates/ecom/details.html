@@ -1,0 +1,51 @@
+
+
+
+
+
+{% extends 'ecom/homebase.html' %}
+{% load static %}
+{% block content %}
+
+
+<hr>
+<div class="column">
+    <div class="container page-wrapper" style="width: 1200px;">
+      <div class="page-inner">
+        <div class="row">
+          <div class="el-wrapper">
+            <div class="box-up">
+              <img class="img" src="{% static one_product.product_image.url %}" alt="product pic" height="600px" width="600px">
+              <div class="img-info">
+                <div class="info-inner">
+                  <span style="background-color:#778899; color:fbfbfb;"class="p-company" >{{one_product.name}}</span>
+                  {% comment %} <span style="background-color:#DCDCDC	; color:fbfbfb;"class="p-company"><a class="links" href="{% url "product-details" one_product.id %}">ข้อมูลสินค้า</a></span> {% endcomment %}
+                  {% comment %} <li class="upper-links"><a class="links" href="/details">ข้อมูลสินค้า</a></li> {% endcomment %}
+                </div>
+                {% comment %} <div class="a-size">{{p.description}}</div> {% endcomment %}
+                
+              </div>
+            </div>
+
+            <div class="box-down">
+              <div class="h-bg">
+                <div class="h-bg-inner"></div>
+              </div>
+
+              <a class="cart" href="{% url 'add-to-cart' one_product.id  %}">
+                <span class="price">฿{{one_product.price}}</span>
+                <span class="add-to-cart">
+                  <span class="txt"><i class="fa fa-shopping-cart"></i> Add To Cart</span>
+                </span>
+              </a>
+            </div>
+            <span class="description">{{one_product.description}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+

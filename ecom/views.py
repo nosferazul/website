@@ -6,6 +6,10 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required,user_passes_test
 from django.contrib import messages
 from django.conf import settings
+from ecom.models import Product
+from django.shortcuts import get_object_or_404, redirect
+
+# from django.views.generic import DetailView
 
 def home_view(request):
     products=models.Product.objects.all()
@@ -18,7 +22,9 @@ def home_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
     return render(request,'ecom/index.html',{'products':products,'product_count_in_cart':product_count_in_cart})
-    
+
+# class ProductDetailView(DetailView):
+#     medel = Product.objects.name
 
 
 #for showing login button for admin
@@ -561,3 +567,49 @@ def contactus_view(request):
             send_mail(str(name)+' || '+str(email),message, settings.EMAIL_HOST_USER, settings.EMAIL_RECEIVING_USER, fail_silently = False)
             return render(request, 'ecom/contactussuccess.html')
     return render(request, 'ecom/contactus.html', {'form':sub})
+
+# def detailss(request):
+#     all_product = Product.objects.all()
+#     context = {'product':all_product}
+#     return render(request, 'ecom/detailss.html',context)
+
+# def details(request, product_id):
+#     one_product = None
+#     try:
+#         one_product = Product.objects.get(id = product_id)
+#     except:
+#         print("w,j,uw,j,u")
+#     context = {"details" : one_product}
+#     return render(request,"ecom/details.html", context)
+
+# def details(request, id):
+#     product = get_object_or_404(Product, id=id)
+#     next_product = get_object_or_404(Product, id=id+1)
+#     try:
+#         next_id = next_product.id
+#     except:
+#         return redirect('product_ids')
+#     else:
+#         return render(request,"ecom/details.html",{"product": next_product})
+
+# def home_view(request):
+#     products=models.Product.objects.all()
+#     if 'product_ids' in request.COOKIES:
+#         product_ids = request.COOKIES['product_ids']
+#         counter=product_ids.split('|')
+#         product_count_in_cart=len(set(counter))
+#     else:
+#         product_count_in_cart=0
+#     if request.user.is_authenticated:
+#         return HttpResponseRedirect('afterlogin')
+#     return render(request,'ecom/index.html',{'products':products,'product_count_in_cart':product_count_in_cart})
+    
+
+def details(request,pk):
+    one_product = Product.objects.get(id=pk)
+    return render(request, 'ecom/details.html',{"one_product":one_product})
+
+
+
+#def update_product_view(request,pk):
+    product=models.Product.objects.get(id=pk)
