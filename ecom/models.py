@@ -51,11 +51,4 @@ class Feedback(models.Model):
     date= models.DateField(auto_now_add=True,null=True)
     def __str__(self):
         return self.name
-
-class Checkreceipt(models.Model):
-    name=models.CharField(max_length=40)
-    receipt=models.CharField(max_length=500)
-    receiept_image= models.ImageField(upload_to='reciept_image/',null=True,blank=True)
-    date= models.DateField(auto_now_add=True,null=True)
-    def __str__(self):
-        return self.name
+s
