@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 # Create your models here.
 class Customer(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
@@ -23,6 +24,9 @@ class Product(models.Model):
     description=models.CharField(max_length=40)
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse("details", kwargs={"pk": self.pk})
 
 
 class Orders(models.Model):
@@ -44,6 +48,14 @@ class Orders(models.Model):
 class Feedback(models.Model):
     name=models.CharField(max_length=40)
     feedback=models.CharField(max_length=500)
+    date= models.DateField(auto_now_add=True,null=True)
+    def __str__(self):
+        return self.name
+
+class Checkreceipt(models.Model):
+    name=models.CharField(max_length=40)
+    receipt=models.CharField(max_length=500)
+    receiept_image= models.ImageField(upload_to='reciept_image/',null=True,blank=True)
     date= models.DateField(auto_now_add=True,null=True)
     def __str__(self):
         return self.name

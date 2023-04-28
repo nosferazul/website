@@ -43,3 +43,11 @@ class ContactusForm(forms.Form):
     Name = forms.CharField(max_length=30)
     Email = forms.EmailField()
     Message = forms.CharField(max_length=500,widget=forms.Textarea(attrs={'rows': 3, 'cols': 30}))
+
+class Receipts(forms.ModelForm):
+    class Meta:
+        model = models.Checkreceipt
+        fields = ['receiept_image']
+        widgets = {
+            'receiept_image': forms.ClearableFileInput(attrs={'multiple': True}),
+        }
