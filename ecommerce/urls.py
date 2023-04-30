@@ -55,6 +55,6 @@ urlpatterns = [
     path('customer-address', views.customer_address_view,name='customer-address'),
     path('payment-success', views.payment_success_view,name='payment-success'),
     path('details/<int:pk>', views.details, name = 'product-details'),
-    
+    path('admin-checkreceipt', views.admin_checkreceipt_view,name='checkreceipt'),
 
 ]

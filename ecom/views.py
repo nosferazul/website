@@ -609,9 +609,9 @@ def details(request,pk):
     one_product = Product.objects.get(id=pk)
     return render(request, 'ecom/details.html',{"one_product":one_product})
 
-def admin_checkreceipt(request):
-    Checkreceipts = models.Checkreceipt.objects.all()
-    return render(request,'ecom/checkreceipt')
+def admin_checkreceipt_view(request):
+    receipt_order =models.Checkreceipt.objects.all()
+    return render(request,'ecom/admin_checkreceipt.html',{'receipt_order':receipt_order})
 
 
 

@@ -18,3 +18,7 @@ class FeedbackAdmin(admin.ModelAdmin):
 admin.site.register(Feedback, FeedbackAdmin)
 # Register your models here.
 
+class CheckreceiptAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Checkreceipt, CheckreceiptAdmin)
+

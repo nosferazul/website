@@ -52,3 +52,13 @@ class Feedback(models.Model):
     def __str__(self):
         return self.name
     
+
+class Checkreceipt(models.Model):
+    user_name=models.OneToOneField(User,on_delete=models.CASCADE)
+    receiept_image= models.ImageField(upload_to='reciept_image/',null=True,blank=True)
+    date= models.DateField(auto_now_add=True,null=True)
+    def __str__(self):
+        return self.name 
+    def get_absolute_url(self):
+        return reverse("checkreceipt", kwargs={"pk": self.pk})
+    
