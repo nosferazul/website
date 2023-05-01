@@ -62,7 +62,20 @@ def customer_signup_view(request):
 def is_customer(user):
     return user.groups.filter(name='CUSTOMER').exists()
 
+def admin_checkreceipt_view(request):
+    receipt_order =models.Checkreceipt.objects.all()
+    return render(request,'ecom/admin_checkreceipt.html',{'receipt_order':receipt_order})
 
+def admin_checkreceipt_view(request):
+    orderreceiptForm = forms.CheckreceiptForm()
+    mydict ={'orderreceiptForm':orderreceiptForm}
+    if request.method == 'POST':
+        orderreceiptForm = forms.CheckreceiptForm(request.POST)
+        receipt_order =models.Checkreceipt.objects.all()
+        if orderreceiptForm.is_valid():
+            orderreceipt=orderreceiptForm.save()
+            orderreceipt.save()
+            return render(request,'ecom/payment_success.html',{'receipt_order':receipt_order},context=mydict)
 
 #---------AFTER ENTERING CREDENTIALS WE CHECK WHETHER USERNAME AND PASSWORD IS OF ADMIN,CUSTOMER
 def afterlogin_view(request):
@@ -612,6 +625,31 @@ def details(request,pk):
 def admin_checkreceipt_view(request):
     receipt_order =models.Checkreceipt.objects.all()
     return render(request,'ecom/admin_checkreceipt.html',{'receipt_order':receipt_order})
+
+
+#def customer_signup_view(request):
+ #   userForm=forms.CustomerUserForm()
+  #  customerForm=forms.CustomerForm()
+   # mydict={'userForm':userForm,'customerForm':customerForm}
+   # if request.method=='POST':
+    #    userForm=forms.CustomerUserForm(request.POST)
+     #   customerForm=forms.CustomerForm(request.POST,request.FILES)
+      #  if userForm.is_valid() and customerForm.is_valid():
+            # userForm.save()
+            # username = userForm.cleaned_data.get('username')
+            # raw_password = userForm.cleaned_data.get('password')
+            # user = user_passes_test(username=username, password=raw_password)
+            # login_required(request, user)
+        #    user=userForm.save()
+       #     user.set_password(user.password)
+        #    user.save()
+         #   customer=customerForm.save(commit=False)
+          #  customer.user = user
+           # customer.save()
+            #my_customer_group = Group.objects.get_or_create(name='CUSTOMER')
+            #my_customer_group[0].user_set.add(user)
+        #return HttpResponseRedirect('customerlogin')
+    #return render(request,'ecom/customersignup.html',context=mydict)
 
 
 

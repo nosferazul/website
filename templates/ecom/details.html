@@ -19,10 +19,10 @@
               <div class="img-info">
                 <div class="info-inner">
                   <span style="background-color:#778899; color:fbfbfb;"class="p-company" >{{one_product.name}}</span>
-                  {% comment %} <span style="background-color:#DCDCDC	; color:fbfbfb;"class="p-company"><a class="links" href="{% url "product-details" one_product.id %}">ข้อมูลสินค้า</a></span> {% endcomment %}
-                  {% comment %} <li class="upper-links"><a class="links" href="/details">ข้อมูลสินค้า</a></li> {% endcomment %}
+                   <span style="background-color:#DCDCDC	; color:fbfbfb;"class="p-company"><a class="links" href="{% url "product-details" one_product.id %}">ข้อมูลสินค้า</a></span>
+                  {% comment %} <li class="upper-links"><a class="links" href="/details">ข้อมูลสินค้า</a></li>  {% endcomment %}
                 </div>
-                {% comment %} <div class="a-size">{{p.description}}</div> {% endcomment %}
+                <div class="a-size">{{p.description}}</div> 
                 
               </div>
             </div>
@@ -44,7 +44,13 @@
         </div>
       </div>
     </div>
-    </div>
+    </div> 
+
+
+
+
+
+
 
 {% endblock %}
 

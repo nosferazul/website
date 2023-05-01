@@ -54,11 +54,23 @@ class Feedback(models.Model):
     
 
 class Checkreceipt(models.Model):
-    user_name=models.OneToOneField(User,on_delete=models.CASCADE)
+    customer_name=models.OneToOneField(User,on_delete=models.CASCADE)
     receiept_image= models.ImageField(upload_to='reciept_image/',null=True,blank=True)
     date= models.DateField(auto_now_add=True,null=True)
     def __str__(self):
-        return self.name 
-    def get_absolute_url(self):
-        return reverse("checkreceipt", kwargs={"pk": self.pk})
+        return self.customer_name 
+    # def get_absolute_url(self):
+    #     return reverse("checkreceipt", kwargs={"pk": self.pk})
+    
+    
+#class Product(models.Model):
+ #   name=models.CharField(max_length=40)
+  #  product_image= models.ImageField(upload_to='product_image/',null=True,blank=True)
+   # price = models.PositiveIntegerField()
+    #description=models.CharField(max_length=40)
+    #def __str__(self):
+     #   return self.name
+    
+   # def get_absolute_url(self):
+    #    return reverse("details", kwargs={"pk": self.pk})
     
