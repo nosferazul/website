@@ -1,4 +1,4 @@
 # website
 test123
 always # source ./ecommerce/venv/scripts/activate
-jirapinya thanansophon
+       # python3 manage.py runserver 
