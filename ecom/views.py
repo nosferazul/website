@@ -622,11 +622,26 @@ def details(request,pk):
     one_product = Product.objects.get(id=pk)
     return render(request, 'ecom/details.html',{"one_product":one_product})
 
+@login_required(login_url='adminlogin')
 def admin_checkreceipt_view(request):
-    receipt_order =models.Checkreceipt.objects.all()
-    return render(request,'ecom/admin_checkreceipt.html',{'receipt_order':receipt_order})
+    receipt_orders =models.Checkreceipt.objects.all()
+    return render(request,'ecom/admin_checkreceipt.html',{'receipt_orders':receipt_orders})
 
+@login_required(login_url='adminlogin')
+def admin_add_checkreceipt_view(request):
+    checkreceiptForm=forms.CheckreceiptForm()
+    if request.method=='POST':
+        checkreceiptForm=forms.CheckreceiptForm(request.POST, request.FILES)
+        if checkreceiptForm.is_valid():
+            checkreceiptForm.save()
+        return HttpResponseRedirect('admin-checkreceipt')
+    return render(request,'ecom/admin_add_checkreceipt.html',{'checkreceiptForm':checkreceiptForm})
 
+@login_required(login_url='adminlogin')
+    def admin_delete_checkreceipt_view(request):
+
+@login_required(login_url='adminlogin')
+    def admin_update_checkreceipt_view(request):
 #def customer_signup_view(request):
  #   userForm=forms.CustomerUserForm()
   #  customerForm=forms.CustomerForm()
@@ -654,4 +669,4 @@ def admin_checkreceipt_view(request):
 
 
 #def update_product_view(request,pk):
-    product=models.Product.objects.get(id=pk)
+    # product=models.Product.objects.get(id=pk)
