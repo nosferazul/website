@@ -44,3 +44,7 @@ class ContactusForm(forms.Form):
     Email = forms.EmailField()
     Message = forms.CharField(max_length=500,widget=forms.Textarea(attrs={'rows': 3, 'cols': 30}))
 
+class CheckreceiptForm(forms.ModelForm):
+    class Meta:
+        model=models.Checkreceipt
+        fields=['customer_name','receiept_image']

@@ -59,8 +59,9 @@ class Checkreceipt(models.Model):
     date= models.DateField(auto_now_add=True,null=True)
     def __str__(self):
         return self.customer_name 
-    # def get_absolute_url(self):
-    #     return reverse("checkreceipt", kwargs={"pk": self.pk})
+        
+    def get_absolute_url(self):
+        return reverse("admin_checkreceipt", kwargs={"pk": self.pk})
     
     
 #class Product(models.Model):

@@ -57,7 +57,7 @@ urlpatterns = [
     path('details/<int:pk>', views.details, name = 'product-details'),
 
     path('admin-checkreceipt', views.admin_checkreceipt_view,name='admin-checkreceipt'),
-    # path('admin-add-checkreceipt', views.admin_add_checkreceipt_view,name='admin-add-checkreceipt'),
-    # path('delete-product/<int:pk>', views.delete_checkreceipt_view,name='delete-checkreceipt'),
-    # path('update-product/<int:pk>', views.update_checkreceipt_view,name='update-checkreceipt'),
+    path('admin-add-checkreceipt', views.admin_add_checkreceipt_view,name='admin-add-checkreceipt'),
+    path('admin-delete-product/<int:pk>', views.admin_delete_checkreceipt_view,name='admin-delete-checkreceipt'),
+    path('admin-update-product/<int:pk>', views.admin_update_checkreceipt_view,name='admin-update-checkreceipt'),
 ]
