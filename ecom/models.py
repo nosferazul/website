@@ -19,11 +19,11 @@ class Customer(models.Model):
 
 class Product(models.Model):
     name=models.CharField(max_length=40)
-    product_image= models.ImageField(upload_to='product_image/',null=True,blank=True)
+    product_image= models.ImageField(upload_to='products')
     price = models.PositiveIntegerField()
     description=models.CharField(max_length=40)
     def __str__(self):
-        return self.name
+        return "{}{}".format(self.pk, self.name)
     
     def get_absolute_url(self):
         return reverse("details", kwargs={"pk": self.pk})

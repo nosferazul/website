@@ -1,5 +1,6 @@
 {% extends 'ecom/customer_base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block content %}
 <head>
@@ -85,13 +86,15 @@
 
 <html>
 <body>
+    
 
-<p>Click on the "Choose File" button to upload a file:</p>
-
-<form action="/action_page.php">
+<p>Click on the "Choose File" button to upload a file: {% render_field checkreceiptForm.receipt_image class="form-control" placeholder="Receipt image" %}</p><a class="links" href="/payment-success"">PAY</a>
+    
   <input type="file" id="myFile" name="filename">
-  <input type="submit">
-</form>
+  <!-- <input type="submit"> -->
+
+
+{{}}
 
 </body>
 </html>
