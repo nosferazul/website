@@ -123,15 +123,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
 
-STATICFILES_DIRS=[STATIC_DIR,]
+#STATICFILES_DIRS=[STATIC_DIR,]
 
-MEDIA_ROOT=os.path.join(BASE_DIR,'static')
+#MEDIA_ROOT=os.path.join(BASE_DIR,'static')
 
 
+#LOGIN_REDIRECT_URL='/afterlogin'
 
-LOGIN_REDIRECT_URL='/afterlogin'
+
+import os
+STATIC_URL = '/media/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+MEDIA_URL = '/static/'
+MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
 
 #for contact us give your gmail id and password
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
