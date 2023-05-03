@@ -62,20 +62,6 @@ def customer_signup_view(request):
 def is_customer(user):
     return user.groups.filter(name='CUSTOMER').exists()
 
-def admin_checkreceipt_view(request):
-    receipt_order =models.Checkreceipt.objects.all()
-    return render(request,'ecom/admin_checkreceipt.html',{'receipt_order':receipt_order})
-
-def admin_checkreceipt_view(request):
-    orderreceiptForm = forms.CheckreceiptForm()
-    mydict ={'orderreceiptForm':orderreceiptForm}
-    if request.method == 'POST':
-        orderreceiptForm = forms.CheckreceiptForm(request.POST)
-        receipt_order =models.Checkreceipt.objects.all()
-        if orderreceiptForm.is_valid():
-            orderreceipt=orderreceiptForm.save()
-            orderreceipt.save()
-            return render(request,'ecom/payment_success.html',{'receipt_order':receipt_order},context=mydict)
 
 #---------AFTER ENTERING CREDENTIALS WE CHECK WHETHER USERNAME AND PASSWORD IS OF ADMIN,CUSTOMER
 def afterlogin_view(request):
@@ -622,10 +608,21 @@ def details(request,pk):
     one_product = Product.objects.get(id=pk)
     return render(request, 'ecom/details.html',{"one_product":one_product})
 
-@login_required(login_url='adminlogin')
+# @login_required(login_url='adminlogin')
+# def admin_checkreceipt_view(request):
+#     receipt_orders =models.Checkreceipt.objects.all()
+#     return render(request,'ecom/admin_checkreceipt.html',{'receipt_orders':receipt_orders})
+
 def admin_checkreceipt_view(request):
-    receipt_orders =models.Checkreceipt.objects.all()
-    return render(request,'ecom/admin_checkreceipt.html',{'receipt_orders':receipt_orders})
+    checkreceiptForm = forms.CheckreceiptForm()
+    mydict ={'checkreceiptForm':checkreceiptForm}
+    if request.method == 'POST':
+        checkreceiptForm = forms.CheckreceiptForm(request.POST)
+        checkreceipt_order =models.Checkreceipt.objects.all()
+        if checkreceiptForm.is_valid():
+            checkreceipt=checkreceiptForm.save()
+            checkreceipt.save()
+            return render(request,'ecom/payment.html',{'checkreceipt_order':checkreceipt_order},context=mydict)
 
 @login_required(login_url='adminlogin')
 def admin_add_checkreceipt_view(request):
@@ -638,10 +635,29 @@ def admin_add_checkreceipt_view(request):
     return render(request,'ecom/admin_add_checkreceipt.html',{'checkreceiptForm':checkreceiptForm})
 
 @login_required(login_url='adminlogin')
-    def admin_delete_checkreceipt_view(request):
+def delete_checkreceipt_view(redirect,pk):
+    checkreceipt=models.Checkreceipt.objects.get(id=pk)
+    checkreceipt.delete()
+    return redirect('admin-checkreceipt')
 
 @login_required(login_url='adminlogin')
-    def admin_update_checkreceipt_view(request):
+def update_checkreceipt_view(request,pk):
+    checkreceipt=models.Checkreceipt.objects.get(id=pk)
+    checkreceiptForm=forms.CheckreceiptForm(instance=checkreceipt)
+    if request.method=='POST':
+        checkreceiptForm=forms.CheckreceiptForm(request.POST,request.FILES,instance=checkreceipt)
+        if checkreceiptForm.is_valid():
+            checkreceiptForm.save()
+            return redirect('admin-checkreceipt')
+    return render(request,'ecom/admin_update_checkreceipt.html',{'checkreceiptForm':checkreceiptForm})
+
+# def admin_checkreceipt_view(request):
+#     receipt_order =models.Checkreceipt.objects.all()
+#     return render(request,'ecom/admin_checkreceipt.html',{'receipt_order':receipt_order})
+
+
+
+
 #def customer_signup_view(request):
  #   userForm=forms.CustomerUserForm()
   #  customerForm=forms.CustomerForm()
