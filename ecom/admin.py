@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Customer,Product,Orders,Feedback,Checkreceipt
+from .models import Customer,Product,Orders,Feedback
 # Register your models here.
 class CustomerAdmin(admin.ModelAdmin):
     pass
@@ -18,6 +18,4 @@ class FeedbackAdmin(admin.ModelAdmin):
 admin.site.register(Feedback, FeedbackAdmin)
 # Register your models here.
 
-class CheckreceiptAdmin(admin.ModelAdmin):
-    pass
-admin.site.register(Checkreceipt, CheckreceiptAdmin)
+

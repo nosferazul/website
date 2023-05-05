@@ -59,7 +59,7 @@ urlpatterns = [
     # path('details', views.ProductDetailView.as_view(), name = 'product-details'),
     # path('details', views.details, name = 'details'),
     path('details/<int:pk>', views.details, name = 'product-details'),
-    path('admin-checkreceipt', views.Checkreceipt,name='checkreceipt'),
+
     
     
 

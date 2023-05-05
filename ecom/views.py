@@ -9,7 +9,8 @@ from django.conf import settings
 from ecom.models import Product
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib import admin
-from ecom.models import Checkreceipt
+from django.http import HttpResponse
+import datetime
 # from django.views.generic import DetailView
 
 def home_view(request):
@@ -619,3 +620,11 @@ def admin_checkreceipt(request):
 
 #def update_product_view(request,pk):
     product=models.Product.objects.get(id=pk)
+
+def home(request):
+    print()
+    message="id:%s, uasername:%s firstname:%s, lastname:%s"%(request.user.pk, request.user.username, request.user.first_name, request.user.last_name)
+    now = datetime.datetime.now()
+    html = "<html><body><p>It is now %s.</p><p>%s</p></body></html>" % (now,message)
+    
+    return HttpResponse(html)
