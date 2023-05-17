@@ -1,0 +1,80 @@
+
+
+
+
+
+{% extends 'ecom/homebase.html' %}
+{% load static %}
+{% block content %}
+
+
+<hr>
+<div class="column">
+    <div class="container page-wrapper" style="width: 1200px;">
+      <div class="page-inner">
+        <div class="row">
+          <div class="el-wrapper">
+            <div class="box-up">
+              <!-- <img class="img" src="{% static one_product.product_image.url %}" alt="product pic" height="600px" width="600px"> -->
+              <!-- <img src="{% static one_product.product_image.url %}" class="rounded mx-auto d-block" alt="product pic" height="500px" width="500px"> -->
+              <center><img src="{% static one_product.product_image.url %}" class="img-fluid" alt="product pic" height="500px" width="500px"></center>
+              <div class="img-info">
+                <div class="info-inner">
+                  <!-- <span style="background-color:#778899; color:fbfbfb;"class="p-company" >{{one_product.name}}</span> -->
+                   <!-- <span style="background-color:#DCDCDC	; color:fbfbfb;"class="p-company"><a class="links" href="{% url "product-details" one_product.id %}"></a></span> -->
+                   <!-- <li class="upper-links"><a class="links" href="/details">ข้อมูลสินค้า</a></li>  -->
+                </div>
+                <div class="a-size">{{p.description}}</div> 
+                
+              </div>
+            </div>
+
+            <div class="box-down">
+              <div class="h-bg">
+                <div class="h-bg-inner"></div>
+              </div>
+              <center>
+              <a class="cart" href="{% url 'add-to-cart' one_product.id  %}">
+                <span class="price">฿{{one_product.price}}</span>
+                <span class="add-to-cart">
+                  <span class="txt"><i class="fa fa-shopping-cart"></i> Add To Cart</span>
+                  <!-- <span>
+                    <thead>
+                      <tr>
+                        
+                        <th>quantity</th>
+                      
+                      </tr>
+                    </thead>
+                  </span> -->
+                </span>
+              </a>
+              </center>
+            </div>
+            <center>
+            <td><input type="number" name="quantity" min="1" value="{{p.quantity}}" /></td>
+            </center>
+          </div>
+        </div>
+        <hr>
+        <h2>
+        <p class="fs-1" >{{one_product.name}} </p>
+        </h2>
+        <hr>
+        <span class="description">{{one_product.description}} </span>
+        <hr>
+        </div>
+        </div>
+      </div>
+    </div>
+    </div> 
+
+
+
+
+
+
+
+{% endblock %}
+
+
